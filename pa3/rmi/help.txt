@@ -1,0 +1,7 @@
+To Compile / Run
+	Setup (rmiregistry ommited)
+		bash linux_builder.sh
+	Manager (Singleton)
+		java Manager
+	Agent (1..*)
+		java Agent $(pwd)

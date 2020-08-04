@@ -1,0 +1,32 @@
+To Compile / Run
+	Terminal 1 (Build Project / Run rmiregistry)
+		1. javac *.java && javah CmdAgentImpl && javah BeaconListenerImpl&& rmic BeaconListenerImpl && rmic CmdAgentImpl
+		2. export JAVA_HOME=...
+			example: "export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk/include" (path to java include folder)
+		3. cc -fPIC -I"$JAVA_HOME" -I"$JAVA_HOME/linux" -shared -o libglos.so glos.c && cc -fPIC -I"$JAVA_HOME" -I"$JAVA_HOME/linux" -shared -o libglt.so glt.c && cc -fPIC -I"$JAVA_HOME" -I"$JAVA_HOME/linux" -shared -o libgv.so gv.c
+		4. export JAVA_HOME=
+		5. javac *.java && javah CmdAgentImpl && javah BeaconListenerImpl&& rmic BeaconListenerImpl && rmic CmdAgentImpl
+		6. rmiregistry
+	
+	Terminal 2 (Run Manager)
+		1. export TEMP_HOME=...
+			example: "export TEMP_HOME=/home/jtloftus/cs487/PA 3/rmi/" (path to project folder)
+		2. java -Djava.library.path="$TEMP_HOME" Manager
+	
+	Terminal 3..* (Run Agent(s))
+		1. java -Djava.library.path="$TEMP_HOME" Agent
+
+
+
+Personal Build Instructions
+	LINUX
+	export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk/include && cc -fPIC -I"$JAVA_HOME" -I"$JAVA_HOME/linux" -shared -o libglos.so glos.c && cc -fPIC -I"$JAVA_HOME" -I"$JAVA_HOME/linux" -shared -o libglt.so glt.c && cc -fPIC -I"$JAVA_HOME" -I"$JAVA_HOME/linux" -shared -o libgv.so gv.c
+	export JAVA_HOME=
+	java -Djava.library.path="/home/jtloftus/cs487/PA 3/rmi/" Manager
+	java -Djava.library.path="/home/jtloftus/cs487/PA 3/rmi/" Agent
+
+	OS
+	export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/include && cc -fPIC -I"$JAVA_HOME" -I"$JAVA_HOME/darwin" -shared -o libglos.so glos.c && cc -fPIC -I"$JAVA_HOME" -I"$JAVA_HOME/darwin" -shared -o libglt.so glt.c && cc -fPIC -I"$JAVA_HOME" -I"$JAVA_HOME/darwin" -shared -o libgv.so gv.c
+	export JAVA_HOME=
+	java -Djava.library.path="/Users/joshloftus/Desktop/3.2/Semester/CS\ 487/PA\ 3/rmi/" Manager
+	java -Djava.library.path="/Users/joshloftus/Desktop/3.2/Semester/CS\ 487/PA\ 3/rmi/" Agent
